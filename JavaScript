@@ -1,0 +1,29 @@
+const target = document.getElementById('target');
+const scoreElement = document.getElementById('score');
+let score = 0;
+
+// Move target to a random position
+function moveTarget() {
+  const gameContainer = document.querySelector('.game-container');
+  const containerWidth = gameContainer.offsetWidth;
+  const containerHeight = gameContainer.offsetHeight;
+
+  const randomX = Math.random() * (containerWidth - 50); // Ensure target stays within bounds
+  const randomY = Math.random() * (containerHeight - 50);
+
+  target.style.left = `${randomX}px`;
+  target.style.top = `${randomY}px`;
+}
+
+// Update score and move the target when it's clicked
+target.addEventListener('click', () => {
+  score++;
+  scoreElement.textContent = score;
+  moveTarget();
+});
+
+// Move the target every 2 seconds
+setInterval(moveTarget, 2000);
+
+// Initialize the target's position
+moveTarget();
